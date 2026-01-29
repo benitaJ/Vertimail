@@ -1,8 +1,0 @@
-com/vertimail/mailcore/util/Hashing.class
-com/vertimail/mailcore/model/AttachmentRef.class
-com/vertimail/mailcore/model/MailFolder.class
-com/vertimail/mailcore/service/MailService.class
-com/vertimail/mailcore/service/FileStorageService.class
-com/vertimail/mailcore/AttachmentTest.class
-com/vertimail/mailcore/service/AttachmentService.class
-com/vertimail/mailcore/model/Mail.class
