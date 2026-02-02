@@ -2,7 +2,7 @@
 
 Système de gestion de boîtes de courrier électronique avec Vert.x 5.
 
-## 📋 Description
+## Description
 
 Ce projet est une application de messagerie web développée avec le framework Vert.x 5 en Java 17. Elle permet aux utilisateurs de :
 
@@ -14,7 +14,7 @@ Ce projet est une application de messagerie web développée avec le framework V
 - Recevoir des messages anonymes via UDP
 - Filtrer et rechercher les messages
 
-## 🚀 Fonctionnalités
+## Fonctionnalités
 
 ### Gestion des comptes
 - Création de compte avec validation de mot de passe fort
@@ -35,13 +35,13 @@ Ce projet est une application de messagerie web développée avec le framework V
 - Limite de 10 messages/jour par adresse IP
 - Format : `destinataire\nsujet\ncontenu`
 
-## 🛠️ Prérequis
+## Prérequis
 
 - Java 17 ou supérieur
 - Maven 3.8+
 - IntelliJ IDEA (recommandé) ou autre IDE Java
 
-## 📦 Installation et exécution
+## Installation et exécution
 
 ### Cloner le projet
 ```bash
@@ -74,7 +74,7 @@ java -jar target/webmail-1.0.0-SNAPSHOT-fat.jar
 ./mvnw clean test
 ```
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 webmail/
@@ -116,7 +116,7 @@ webmail/
 └── doc.pdf
 ```
 
-## 🔒 Sécurité
+## Sécurité
 
 ### Mots de passe
 Les mots de passe doivent respecter les critères suivants :
@@ -136,7 +136,7 @@ Les mots de passe sont stockés sous forme de hash SHA-256 avec sel unique.
 ### Code de récupération
 Un code de récupération unique est généré à la création du compte. Ce code permet de réinitialiser le mot de passe en cas de perte.
 
-## 📡 API UDP
+## API UDP
 
 Format des messages UDP :
 ```
@@ -158,7 +158,7 @@ Réponses possibles :
 - `ERREUR: Limite de 10 messages/jour atteinte pour cette IP.`
 - `ERREUR: Format invalide.`
 
-## 🧪 Tests
+## Tests
 
 Pour tester l'application :
 
@@ -168,12 +168,12 @@ Pour tester l'application :
 4. Connectez-vous avec "bob" pour voir le message reçu
 5. Testez l'envoi de messages anonymes via UDP
 
-## 👥 Auteurs
+## Auteurs
 
-- [Nom étudiant 1]
-- [Nom étudiant 2]
-- [Nom étudiant 3]
+- Tome Marco
+- Joseph Benita
+- BAKABOU Ilyasse
 
-## 📝 Licence
+## Licence
 
 Projet universitaire - UGE 2025
