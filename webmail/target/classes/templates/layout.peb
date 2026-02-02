@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UGE Webmail{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {% block header %}
+    <header class="header">
+        <div class="header-content">
+            <a href="/mail/inbox" class="logo">📧 UGE Webmail</a>
+            {% if username is not empty %}
+            <nav class="nav">
+                <span class="user-info">Connecté : <strong>{{ username }}</strong></span>
+                <a href="/mail/settings" class="nav-link">⚙️ Paramètres</a>
+                <a href="/logout" class="nav-link logout">🚪 Déconnexion</a>
+            </nav>
+            {% endif %}
+        </div>
+    </header>
+    {% endblock %}
+    
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2025 UGE Webmail - Projet Vert.x</p>
+    </footer>
+</body>
+</html>

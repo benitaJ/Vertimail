@@ -1,0 +1,15 @@
+{
+  "important" : false,
+  "contentPreview" : "hello, it's my test1",
+  "unread" : false,
+  "toAsString" : "test1",
+  "id" : "85731c8e-eee8-49b0-8994-050ef82487a6",
+  "from" : "test1",
+  "to" : [ "test1" ],
+  "subject" : "Hello",
+  "content" : "hello, it's my test1",
+  "date" : "2026-02-02T09:32:39",
+  "attachments" : [ ],
+  "tags" : [ ],
+  "folder" : "inbox"
+}

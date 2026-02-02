@@ -1,0 +1,52 @@
+{% extends "layout.peb" %}
+
+{% block title %}Connexion - UGE Webmail{% endblock %}
+
+{% block header %}
+<header class="header">
+    <div class="header-content">
+        <span class="logo">📧 UGE Webmail</span>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>Connexion</h1>
+        
+        {% if error is not empty %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        
+        {% if success is not empty %}
+        <div class="alert alert-success">{{ success }}</div>
+        {% endif %}
+        
+        <form method="post" action="/login" class="auth-form">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-group checkbox">
+                <label>
+                    <input type="checkbox" name="remember"> Se souvenir de moi (24h)
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+        </form>
+        
+        <div class="auth-links">
+            <a href="/register">Créer un compte</a>
+            <a href="/recovery">Mot de passe oublié ?</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

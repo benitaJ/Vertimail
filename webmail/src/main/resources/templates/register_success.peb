@@ -1,0 +1,32 @@
+{% extends "layout.peb" %}
+
+{% block title %}Compte créé - UGE Webmail{% endblock %}
+
+{% block header %}
+<header class="header">
+    <div class="header-content">
+        <a href="/login" class="logo">📧 UGE Webmail</a>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>✅ Compte créé avec succès !</h1>
+        
+        <div class="alert alert-success">
+            <p>Bienvenue <strong>{{ username }}</strong> ! Votre compte a été créé.</p>
+        </div>
+        
+        <div class="recovery-code-box">
+            <h2>⚠️ Code de récupération</h2>
+            <p>Conservez précieusement ce code. Il vous permettra de récupérer votre compte en cas de perte de mot de passe.</p>
+            <div class="code-display">{{ recoveryCode }}</div>
+            <p class="warning">Ce code ne sera plus jamais affiché !</p>
+        </div>
+        
+        <a href="/login" class="btn btn-primary btn-block">Se connecter</a>
+    </div>
+</div>
+{% endblock %}

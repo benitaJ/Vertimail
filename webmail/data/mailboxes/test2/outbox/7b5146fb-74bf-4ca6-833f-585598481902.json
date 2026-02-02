@@ -1,0 +1,15 @@
+{
+  "important" : false,
+  "contentPreview" : "Hello friend test1",
+  "unread" : false,
+  "toAsString" : "test1",
+  "id" : "7b5146fb-74bf-4ca6-833f-585598481902",
+  "from" : "test2",
+  "to" : [ "test1" ],
+  "subject" : "Hello friend",
+  "content" : "Hello friend test1",
+  "date" : "2026-02-02T09:35:00",
+  "attachments" : [ ],
+  "tags" : [ ],
+  "folder" : "outbox"
+}

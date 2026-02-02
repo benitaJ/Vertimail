@@ -1,0 +1,53 @@
+{% extends "layout.peb" %}
+
+{% block title %}Récupération de compte - UGE Webmail{% endblock %}
+
+{% block header %}
+<header class="header">
+    <div class="header-content">
+        <a href="/login" class="logo">📧 UGE Webmail</a>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>Récupération de compte</h1>
+        
+        {% if error is not empty %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        
+        <p>Entrez votre nom d'utilisateur, votre code de récupération et un nouveau mot de passe.</p>
+        
+        <form method="post" action="/recovery" class="auth-form">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="recoveryCode">Code de récupération</label>
+                <input type="text" id="recoveryCode" name="recoveryCode" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="newPassword">Nouveau mot de passe</label>
+                <input type="password" id="newPassword" name="newPassword" required minlength="8">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirmer le nouveau mot de passe</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Réinitialiser le mot de passe</button>
+        </form>
+        
+        <div class="auth-links">
+            <a href="/login">Retour à la connexion</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "layout.peb" %}
+
+{% block title %}{{ email.subject | default('(Sans sujet)') }} - UGE Webmail{% endblock %}
+
+{% block content %}
+<div class="mail-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a href="/mail/{{ folder }}" class="btn btn-secondary btn-compose">← Retour</a>
+        
+        <nav class="folder-nav">
+            <a href="/mail/inbox" class="folder-link {% if folder == 'inbox' %}active{% endif %}">📥 Boîte de réception</a>
+            <a href="/mail/outbox" class="folder-link {% if folder == 'outbox' %}active{% endif %}">📤 Messages envoyés</a>
+            <a href="/mail/drafts" class="folder-link {% if folder == 'draft' %}active{% endif %}">📝 Brouillons</a>
+            <a href="/mail/trash" class="folder-link {% if folder == 'trash' %}active{% endif %}">🗑️ Corbeille</a>
+        </nav>
+    </aside>
+    
+    <!-- Main content -->
+    <div class="mail-content">
+        <div class="email-view">
+            <!-- Actions bar -->
+            <div class="email-actions">
+                {% if folder == "draft" %}
+                <a href="/mail/edit/{{ email.id }}" class="btn btn-primary">✏️ Modifier</a>
+                {% else %}
+                <a href="/mail/compose?to={{ email.from }}&subject=Re: {{ email.subject }}&replyTo={{ folder }}/{{ email.id }}" 
+                   class="btn btn-primary">↩️ Répondre</a>
+                {% endif %}
+                
+                <form method="post" action="/mail/delete/{{ folder }}/{{ email.id }}" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" 
+                            onclick="return confirm('{% if folder == 'trash' %}Supprimer définitivement ?{% else %}Déplacer vers la corbeille ?{% endif %}')">
+                        🗑️ {% if folder == "trash" %}Supprimer définitivement{% else %}Supprimer{% endif %}
+                    </button>
+                </form>
+                
+                <!-- Tag toggles -->
+                <div class="tag-actions">
+                    <form method="post" action="/mail/tag/{{ folder }}/{{ email.id }}/important" style="display: inline;">
+                        <button type="submit" class="btn btn-small {% if email.important %}btn-warning{% else %}btn-secondary{% endif %}">
+                            ⭐ {% if email.important %}Retirer Important{% else %}Marquer Important{% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Email header -->
+            <div class="email-header-view">
+                <h1>{{ email.subject | default('(Sans sujet)') }}</h1>
+                
+                <div class="email-meta">
+                    <div class="meta-row">
+                        <span class="meta-label">De :</span>
+                        <span class="meta-value">{{ email.from }}</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">À :</span>
+                        <span class="meta-value">{{ email.toAsString }}</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Date :</span>
+                        <span class="meta-value">{{ email.date }}</span>
+                    </div>
+                </div>
+                
+                <!-- Tags -->
+                {% if email.tags is not empty %}
+                <div class="email-tags-view">
+                    {% for tag in email.tags %}
+                    <span class="tag {% if tag == 'important' %}tag-important{% elseif tag == 'unread' %}tag-unread{% elseif tag == 'anonymous' %}tag-anonymous{% endif %}">
+                        {{ tag }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Email content -->
+            <div class="email-body">
+                <pre>{{ email.content }}</pre>
+            </div>
+            
+            <!-- Attachments -->
+            {% if email.attachments is not empty %}
+            <div class="email-attachments">
+                <h3>📎 Pièces jointes ({{ email.attachments | length }})</h3>
+                <ul class="attachment-list">
+                    {% for attachment in email.attachments %}
+                    <li class="attachment-item">
+                        <a href="/mail/attachment/{{ attachment.sha256 }}/{{ attachment.filename }}" 
+                           class="attachment-link" download>
+                            📄 {{ attachment.filename }}
+                            <span class="attachment-size">({{ attachment.formattedSize }})</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

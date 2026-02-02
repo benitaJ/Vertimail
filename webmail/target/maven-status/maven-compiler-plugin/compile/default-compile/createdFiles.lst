@@ -1,0 +1,12 @@
+fr/uge/webmail/service/UserService.class
+fr/uge/webmail/util/PasswordUtils$PasswordValidation.class
+fr/uge/webmail/service/UserService$Session.class
+fr/uge/webmail/model/Email.class
+fr/uge/webmail/util/FileUtils.class
+fr/uge/webmail/util/PasswordUtils.class
+fr/uge/webmail/model/Attachment.class
+fr/uge/webmail/service/MailboxService.class
+fr/uge/webmail/MainVerticle.class
+fr/uge/webmail/service/UdpService$DailyCounter.class
+fr/uge/webmail/service/UdpService.class
+fr/uge/webmail/model/User.class

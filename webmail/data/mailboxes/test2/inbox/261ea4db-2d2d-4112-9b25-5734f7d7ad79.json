@@ -1,0 +1,21 @@
+{
+  "important" : false,
+  "contentPreview" : "",
+  "unread" : false,
+  "toAsString" : "test2",
+  "id" : "261ea4db-2d2d-4112-9b25-5734f7d7ad79",
+  "from" : "test1",
+  "to" : [ "test2" ],
+  "subject" : "cours CEM",
+  "content" : "",
+  "date" : "2026-02-02T11:48:11",
+  "attachments" : [ {
+    "formattedSize" : "185,6 KB",
+    "filename" : "Sujet TP.pdf",
+    "sha256" : "9a8eac27992e3eedf49271dd48a7a6c77c653363a614d0866302cdb65b9a6a82",
+    "contentType" : "application/pdf",
+    "size" : 190046
+  } ],
+  "tags" : [ ],
+  "folder" : "inbox"
+}

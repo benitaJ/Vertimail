@@ -1,0 +1,98 @@
+{% extends "layout.peb" %}
+
+{% block title %}
+{% if folder == "inbox" %}Boîte de réception{% elseif folder == "outbox" %}Messages envoyés{% elseif folder == "draft" %}Brouillons{% elseif folder == "trash" %}Corbeille{% endif %} - UGE Webmail
+{% endblock %}
+
+{% block content %}
+<div class="mail-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a href="/mail/compose" class="btn btn-primary btn-compose">✏️ Nouveau message</a>
+        
+        <nav class="folder-nav">
+            <a href="/mail/inbox" class="folder-link {% if folder == 'inbox' %}active{% endif %}">
+                📥 Boîte de réception
+                {% if unreadInbox > 0 %}<span class="badge">{{ unreadInbox }}</span>{% endif %}
+            </a>
+            <a href="/mail/outbox" class="folder-link {% if folder == 'outbox' %}active{% endif %}">
+                📤 Messages envoyés
+            </a>
+            <a href="/mail/drafts" class="folder-link {% if folder == 'draft' %}active{% endif %}">
+                📝 Brouillons
+            </a>
+            <a href="/mail/trash" class="folder-link {% if folder == 'trash' %}active{% endif %}">
+                🗑️ Corbeille
+            </a>
+        </nav>
+        
+        <div class="storage-info">
+            <p>Espace utilisé : <strong>{{ storageUsed }}</strong></p>
+        </div>
+    </aside>
+    
+    <!-- Main content -->
+    <div class="mail-content">
+        <div class="folder-header">
+            <h1>
+                {% if folder == "inbox" %}📥 Boîte de réception
+                {% elseif folder == "outbox" %}📤 Messages envoyés
+                {% elseif folder == "draft" %}📝 Brouillons
+                {% elseif folder == "trash" %}🗑️ Corbeille
+                {% endif %}
+            </h1>
+            
+            <!-- Search/Filter form -->
+            <form method="get" class="filter-form">
+                <input type="text" name="filter" value="{{ filter }}" 
+                       placeholder="Filtrer par expéditeur, destinataire ou sujet...">
+                <button type="submit" class="btn btn-secondary">🔍 Filtrer</button>
+                {% if filter is not empty %}
+                <a href="/mail/{{ folder }}" class="btn btn-link">Effacer</a>
+                {% endif %}
+            </form>
+        </div>
+        
+        {% if emails is empty %}
+        <div class="empty-folder">
+            <p>Aucun message dans ce dossier.</p>
+        </div>
+        {% else %}
+        <div class="email-list">
+            {% for email in emails %}
+            <div class="email-item {% if email.unread %}unread{% endif %} {% if email.important %}important{% endif %}">
+                <div class="email-tags">
+                    {% if email.unread %}<span class="tag tag-unread">Non lu</span>{% endif %}
+                    {% if email.important %}<span class="tag tag-important">Important</span>{% endif %}
+                    {% for tag in email.tags %}
+                        {% if tag != 'unread' and tag != 'important' %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <a href="/mail/view/{{ folder }}/{{ email.id }}" class="email-link">
+                    <div class="email-header">
+                        <span class="email-from">
+                            {% if folder == "outbox" or folder == "draft" %}
+                            À : {{ email.toAsString }}
+                            {% else %}
+                            De : {{ email.from }}
+                            {% endif %}
+                        </span>
+                        <span class="email-date">{{ email.date }}</span>
+                    </div>
+                    <div class="email-subject">{{ email.subject | default('(Sans sujet)') }}</div>
+                    <div class="email-preview">{{ email.contentPreview }}</div>
+                </a>
+                
+                {% if email.attachments is not empty %}
+                <span class="attachment-indicator" title="{{ email.attachments | length }} pièce(s) jointe(s)">📎</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
